@@ -20,11 +20,16 @@ def readUrl(readtimes,url):
 def callRead(url,times):
     thread.start_new_thread(readUrl, (times,url))
 
-def startThread(): #Use thread.start_new_thread() to create many new read url threads  
-    callRead("http://blog.csdn.net/u010316858/article/details/46778365",421)
-    callRead("http://blog.csdn.net/u010316858/article/details/45025531",330)
-    callRead("http://blog.csdn.net/u010316858/article/details/41286979",260)
+def calcThread(url,times,threadCount):
+    temp = times / threadCount
+    for i in range(threadCount):
+        callRead(url,temp)
+    
+
+def startThread(): #Use thread.start_new_thread() to create many new read url threads
+    calcThread("http://blog.csdn.net/u014024936/article/details/50053097",5000,200)
 
 
+    
 if __name__=='__main__':
     startThread()
